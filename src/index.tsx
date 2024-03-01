@@ -1,3 +1,4 @@
+import { ClerkProvider, SignedIn, SignedOut, SignInButton } from '@clerk/clerk-react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,16 +11,31 @@ import './index.scss';
 const store = setUpStore(container);
 const { App, ScrollToTop, ErrorHandler, appUpdateAvailable } = container;
 
-createRoot(document.getElementById('root')!).render( // eslint-disable-line @typescript-eslint/no-non-null-assertion
-  <Provider store={store}>
-    <BrowserRouter basename={pack.homepage}>
-      <ErrorHandler>
-        <ScrollToTop>
-          <App />
-        </ScrollToTop>
-      </ErrorHandler>
-    </BrowserRouter>
-  </Provider>,
+// Import your publishable key
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error('Missing Publishable Key');
+}
+
+createRoot(document.getElementById('root')!).render(
+  // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <Provider store={store}>
+      <BrowserRouter basename={pack.homepage}>
+        <ErrorHandler>
+          <ScrollToTop>
+            <SignedIn>
+              <App />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+          </ScrollToTop>
+        </ErrorHandler>
+      </BrowserRouter>
+    </Provider>
+  </ClerkProvider>,
 );
 
 // Learn more about service workers: https://cra.link/PWA

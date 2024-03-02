@@ -1,5 +1,5 @@
 import { SignOutButton } from '@clerk/clerk-react';
-import { faChevronDown as arrowIcon, faCogs as cogsIcon } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown as arrowIcon, faCogs as cogsIcon, faSignOut as signOutIcon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useToggle } from '@shlinkio/shlink-frontend-kit';
 import { clsx } from 'clsx';
@@ -47,7 +47,13 @@ const MainHeader: FCWithDeps<{}, MainHeaderDeps> = () => {
           </NavItem>
           <ServersDropdown />
           <NavItem>
-            <SignOutButton signOutCallback={() => { redirect('/'); }} />
+            <NavLink tag={Link}>
+              <SignOutButton signOutCallback={() => { redirect('/'); }}>
+                <span className="">
+                  <FontAwesomeIcon icon={signOutIcon} />&nbsp;Sign out
+                </span>
+              </SignOutButton>
+            </NavLink>
           </NavItem>
         </Nav>
       </Collapse>

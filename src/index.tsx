@@ -2,6 +2,7 @@ import { ClerkProvider, SignedIn, SignedOut, SignInButton } from '@clerk/clerk-r
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { Button, Card, CardBody, CardHeader } from 'reactstrap';
 import pack from '../package.json';
 import { container } from './container';
 import { setUpStore } from './container/store';
@@ -29,7 +30,18 @@ createRoot(document.getElementById('root')!).render(
               <App />
             </SignedIn>
             <SignedOut>
-              <SignInButton />
+              <Card>
+                <CardHeader>
+                  Login To Continue
+                </CardHeader>
+                <CardBody>
+                  <SignInButton>
+                    <Button>
+                      Sign In
+                    </Button>
+                  </SignInButton>
+                </CardBody>
+              </Card>
             </SignedOut>
           </ScrollToTop>
         </ErrorHandler>

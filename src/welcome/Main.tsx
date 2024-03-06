@@ -15,29 +15,32 @@ export const Main = () => (
       </Button>
     </SignInButton>
     <a href="https://opendeved.net/about/">About OpenDevEd &rarr;</a>
-    <div>
+    <div className="features">
       {/* write 3 cards to show case the features */}
-      <div>
-        <h2>Feature 1</h2>
-        <p>
-          This is the first feature of the application. It allows you to do
-          something really cool.
-        </p>
-      </div>
-      <div>
-        <h2>Feature 2</h2>
-        <p>
-          This is the second feature of the application. It allows you to do
-          something really cool.
-        </p>
-      </div>
-      <div>
-        <h2>Feature 3</h2>
-        <p>
-          This is the third feature of the application. It allows you to do
-          something really cool.
-        </p>
-      </div>
+      <ul className="features_list">
+        <li>
+          <h2>Web client</h2>
+          <p>
+            Shlink web client is the official Progressive Web Application for
+            Shlink.
+          </p>
+        </li>
+        <li>
+          <h2>Beautiful UI</h2>
+          <p>
+            It provides a beautiful UI from which you can handle your short
+            URLs, create new ones or see very detailed and customizable visits
+            stats.
+          </p>
+        </li>
+        <li>
+          <h2>Same organization as slink</h2>
+          <p>
+            It is part of the same organization and usually supports all Shlink
+            features, soon after they are released.
+          </p>
+        </li>
+      </ul>
     </div>
   </main>
 );

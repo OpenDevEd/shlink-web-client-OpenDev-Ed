@@ -4,7 +4,11 @@ import './styles.scss';
 
 export const Header = () => (
   <>
-    <Navbar color="light" container>
+    <Navbar
+      color="light"
+      container
+      style={{ position: 'fixed', width: '100%', top: '0' }}
+    >
       <NavbarBrand href="/">
         <p style={{ display: 'flex', alignItems: 'center' }}>
           <img
@@ -12,7 +16,8 @@ export const Header = () => (
             alt="logo"
             width={32}
             height={32}
-          />&nbsp; Shlink
+          />
+          &nbsp; Shlink
         </p>
       </NavbarBrand>
       <SignInButton>

@@ -1,10 +1,11 @@
-import { faChevronDown as arrowIcon, faCogs as cogsIcon } from '@fortawesome/free-solid-svg-icons';
+import { SignOutButton } from '@clerk/clerk-react';
+import { faChevronDown as arrowIcon, faCogs as cogsIcon, faSignOut as signOutIcon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useToggle } from '@shlinkio/shlink-frontend-kit';
 import { clsx } from 'clsx';
 import type { FC } from 'react';
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, redirect, useLocation } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import type { FCWithDeps } from '../container/utils';
 import { componentFactory, useDependencies } from '../container/utils';
@@ -45,6 +46,15 @@ const MainHeader: FCWithDeps<{}, MainHeaderDeps> = () => {
             </NavLink>
           </NavItem>
           <ServersDropdown />
+          <NavItem>
+            <NavLink tag={Link}>
+              <SignOutButton signOutCallback={() => { redirect('/'); }}>
+                <span className="">
+                  <FontAwesomeIcon icon={signOutIcon} />&nbsp;Sign out
+                </span>
+              </SignOutButton>
+            </NavLink>
+          </NavItem>
         </Nav>
       </Collapse>
     </Navbar>
